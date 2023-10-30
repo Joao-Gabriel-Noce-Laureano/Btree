@@ -108,6 +108,7 @@ void emptyNodeCheck(Tree t, link n, int item)
 }
 
 link remocaoR(Tree t, link h, int item) {
+	if(h == t->z) return NULL;
 	for(int i = 0; i <= h->total; i++)
 	{
 		if(h->itens[i] == item) return h;
@@ -140,7 +141,7 @@ void remocao(Tree t, int item) {
 		return;
 	}
 	link n = remocaoR(t, t->head, item);
-	emptyNodeCheck(t, n, item);
+	if(n!=NULL) emptyNodeCheck(t, n, item);
 	
 	return;
 }
