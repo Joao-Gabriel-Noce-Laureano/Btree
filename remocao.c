@@ -4,7 +4,14 @@
 
 void remocaoCheck(Tree t, link n, int item)
 {
-	
+	if(n == t->head && n->filhos[0] == t->z && n->total == 1)
+	{
+		t->head = t->z;
+		free(n->filhos);
+		free(n->itens);
+		free(n);
+		return;
+	}
 	if(n->total < t->ordem && n != t->head)
 	{
 		link irmEsq = irmaoEsquerda(t, n);
