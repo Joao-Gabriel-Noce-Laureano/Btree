@@ -33,7 +33,7 @@ link irmaoEsquerda(Tree, link);
 
 link antecessor(Tree, link, int);
 
-void emptyNodeCheck(Tree, link, int);
+void remocaoCheck(Tree, link, int);
 
 void remocao(Tree, int);
 link remocaoR(Tree, link, int);

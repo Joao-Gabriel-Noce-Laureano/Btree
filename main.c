@@ -21,10 +21,10 @@ int main () {
 	insert(t,20);
 	insert(t,10);
 	insert(t,42);
-	remocao(t,60);
 	remocao(t,45);
-	remocao(t,35);
 	remocao(t, 44);
+	remocao(t,60);
+	remocao(t,35);
 	imprime(t, "ArvoreB");
 	
 

@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include "functions.h"
 
-void emptyNodeCheck(Tree t, link n, int item)
+void remocaoCheck(Tree t, link n, int item)
 {
 	
-	if(n->total < t->ordem)
+	if(n->total < t->ordem && n != t->head)
 	{
 		link irmEsq = irmaoEsquerda(t, n);
 		if(irmEsq != NULL && irmEsq->total > t->ordem)
@@ -42,7 +42,7 @@ void emptyNodeCheck(Tree t, link n, int item)
 			    n->pai = NULL;
 			} 
 		}
-		else if(n->pai->total < t->ordem) emptyNodeCheck(t, n->pai, 0);
+		else if(n->pai->total < t->ordem) remocaoCheck(t, n->pai, 0);
 		return;
 	}
 	else if(n->filhos[0] == t->z)
@@ -91,18 +91,19 @@ void emptyNodeCheck(Tree t, link n, int item)
 				    n->pai = NULL;
 				} 
 			}
-			else if(n->pai->total < t->ordem) emptyNodeCheck(t, n->pai, 0);
+			else if(n->pai->total < t->ordem) remocaoCheck(t, n->pai, 0);
 		}
 		return;
 	} 
 	else
 	{
+		
 		link ant = antecessor(t,n,item);
 		int i;
 		for(i=0; i < n->total; i++) if(n->itens[i] == item) break;
 		n->itens[i] = ant->itens[ant->total-1]; 
 		removeVet(ant,item);
-		if(ant->total < t->ordem) emptyNodeCheck(t, ant, 0);
+		if(ant->total < t->ordem) remocaoCheck(t, ant, 0);
 		return;
 	}
 }
@@ -141,7 +142,8 @@ void remocao(Tree t, int item) {
 		return;
 	}
 	link n = remocaoR(t, t->head, item);
-	if(n!=NULL) emptyNodeCheck(t, n, item);
+	
+	if(n!=NULL) remocaoCheck(t, n, item);
 	
 	return;
 }
